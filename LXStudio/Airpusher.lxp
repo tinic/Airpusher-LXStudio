@@ -55,9 +55,9 @@
           "midiChannel": 16,
           "autoCycleEnabled": true,
           "autoCycleMode": 0,
-          "autoCycleTimeSecs": 720.0,
+          "autoCycleTimeSecs": 30.0,
           "transitionEnabled": true,
-          "transitionTimeSecs": 20.0,
+          "transitionTimeSecs": 5.0,
           "transitionBlendMode": 0
         },
         "effects": [],
@@ -71,7 +71,7 @@
             "parameters": {
               "label": "Airpusher",
               "effect": 0,
-              "speed": 0.0
+              "speed": 6.0
             },
             "modulation": {
               "modulators": [],
@@ -87,7 +87,7 @@
             "parameters": {
               "label": "Airpusher",
               "effect": 6,
-              "speed": 0.0
+              "speed": 6.0
             },
             "modulation": {
               "modulators": [],
@@ -103,7 +103,7 @@
             "parameters": {
               "label": "Airpusher",
               "effect": 2,
-              "speed": 0.0
+              "speed": 6.0
             },
             "modulation": {
               "modulators": [],
@@ -119,7 +119,7 @@
             "parameters": {
               "label": "Airpusher",
               "effect": 3,
-              "speed": 0.0
+              "speed": 6.0
             },
             "modulation": {
               "modulators": [],
@@ -135,7 +135,7 @@
             "parameters": {
               "label": "Airpusher",
               "effect": 4,
-              "speed": 0.0
+              "speed": 6.0
             },
             "modulation": {
               "modulators": [],
@@ -151,7 +151,7 @@
             "parameters": {
               "label": "Airpusher",
               "effect": 5,
-              "speed": 0.0
+              "speed": 6.0
             },
             "modulation": {
               "modulators": [],
@@ -167,7 +167,7 @@
             "parameters": {
               "label": "Airpusher",
               "effect": 1,
-              "speed": 2.2351741790771484E-7
+              "speed": 6.0
             },
             "modulation": {
               "modulators": [],
@@ -183,7 +183,7 @@
             "parameters": {
               "label": "Airpusher",
               "effect": 7,
-              "speed": 0.0
+              "speed": 6.0
             },
             "modulation": {
               "modulators": [],

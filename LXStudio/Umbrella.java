@@ -230,28 +230,32 @@ public class Umbrella  extends AirpusherFixture {
     this.darkLight = new Gradient(darkLight, Gradient.ColorMode.RGB);
 }
 
-  Umbrella(int id, String ip, double xl, double yl, double zl) {
+  Umbrella(int id, String ip, int inner_leds, int empty_leds, int outer_leds, double inner_radius, double outer_radius, double xl, double yl, double zl) {
     super(ip);
 
     initGradients();
 
-    int spokes = 8;
-    int leds_per_spoke = 10;
     List<LXPoint> leds = new ArrayList<LXPoint>();
-    for (int p = 0; p < spokes; p++) {
-      double xm = Math.sin((2.0 * Math.PI / (double)spokes) * p);
-      double ym = Math.cos((2.0 * Math.PI / (double)spokes) * p);
-      for (int q = 0; q < leds_per_spoke; q++) {
-        double l = 0.305;
-        double o = 0.045;
-        double f = (double)(((p&1) == 1) ? (leds_per_spoke-1-q) : q) / (double)(leds_per_spoke-1);
-        double x = xm * (f * l) + xm * o; 
-        double y = ym * (f * l) + ym * o; 
-        LXPoint pb = new LXPoint(x-xl,y+yl,zl);
-        addPoint(pb);
-        leds.add(pb);
-      }
+    for (int p = 0; p < inner_leds; p++) {
+      double xm = Math.sin((2.0 * Math.PI / (double)inner_leds) * p);
+      double ym = Math.cos((2.0 * Math.PI / (double)inner_leds) * p);
+      double x = xm * inner_radius; 
+      double y = ym * inner_radius; 
+      LXPoint pb = new LXPoint(x-xl,y+yl,zl);
+      addPoint(pb);
+      leds.add(pb);
     }
+    
+    for (int p = 0; p < outer_leds; p++) {
+      double xm = Math.sin((2.0 * Math.PI / (double)outer_leds) * (outer_leds - p - 1));
+      double ym = Math.cos((2.0 * Math.PI / (double)outer_leds) * (outer_leds - p - 1));
+      double x = xm * outer_radius; 
+      double y = ym * outer_radius; 
+      LXPoint pb = new LXPoint(x-xl,y+yl,zl);
+      addPoint(pb);
+      leds.add(pb);
+    }
+
     
     this.id = id;
     this.leds = Collections.unmodifiableList(leds);
