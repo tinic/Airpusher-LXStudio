@@ -230,32 +230,55 @@ public class Umbrella  extends AirpusherFixture {
     this.darkLight = new Gradient(darkLight, Gradient.ColorMode.RGB);
 }
 
-  Umbrella(int id, String ip, int inner_leds, int empty_leds, int outer_leds, double inner_radius, double outer_radius, double xl, double yl, double zl) {
+  Umbrella(int id, String ip, Boolean reversed, int inner_leds, int empty_leds, int outer_leds, double inner_radius, double outer_radius, double xl, double yl, double zl) {
     super(ip);
 
     initGradients();
 
     List<LXPoint> leds = new ArrayList<LXPoint>();
-    for (int p = 0; p < inner_leds; p++) {
-      double xm = Math.sin((2.0 * Math.PI / (double)inner_leds) * p);
-      double ym = Math.cos((2.0 * Math.PI / (double)inner_leds) * p);
-      double x = xm * inner_radius; 
-      double y = ym * inner_radius; 
-      LXPoint pb = new LXPoint(x-xl,y+yl,zl);
-      addPoint(pb);
-      leds.add(pb);
-    }
     
-    for (int p = 0; p < outer_leds; p++) {
-      double xm = Math.sin((2.0 * Math.PI / (double)outer_leds) * (outer_leds - p - 1));
-      double ym = Math.cos((2.0 * Math.PI / (double)outer_leds) * (outer_leds - p - 1));
-      double x = xm * outer_radius; 
-      double y = ym * outer_radius; 
-      LXPoint pb = new LXPoint(x-xl,y+yl,zl);
-      addPoint(pb);
-      leds.add(pb);
-    }
+    if (reversed) {
+      for (int p = 0; p < outer_leds; p++) {
+        double xm = Math.sin((2.0 * Math.PI / (double)outer_leds) * (outer_leds - p - 1));
+        double ym = Math.cos((2.0 * Math.PI / (double)outer_leds) * (outer_leds - p - 1));
+        double x = xm * outer_radius; 
+        double y = ym * outer_radius; 
+        LXPoint pb = new LXPoint(x-xl,y+yl,zl);
+        addPoint(pb);
+        leds.add(pb);
+      }
 
+      for (int p = 0; p < inner_leds; p++) {
+        double xm = Math.sin((2.0 * Math.PI / (double)inner_leds) * p);
+        double ym = Math.cos((2.0 * Math.PI / (double)inner_leds) * p);
+        double x = xm * inner_radius; 
+        double y = ym * inner_radius; 
+        LXPoint pb = new LXPoint(x-xl,y+yl,zl);
+        addPoint(pb);
+        leds.add(pb);
+      }
+      
+    } else {
+      for (int p = 0; p < inner_leds; p++) {
+        double xm = Math.sin((2.0 * Math.PI / (double)inner_leds) * p);
+        double ym = Math.cos((2.0 * Math.PI / (double)inner_leds) * p);
+        double x = xm * inner_radius; 
+        double y = ym * inner_radius; 
+        LXPoint pb = new LXPoint(x-xl,y+yl,zl);
+        addPoint(pb);
+        leds.add(pb);
+      }
+      
+      for (int p = 0; p < outer_leds; p++) {
+        double xm = Math.sin((2.0 * Math.PI / (double)outer_leds) * (outer_leds - p - 1));
+        double ym = Math.cos((2.0 * Math.PI / (double)outer_leds) * (outer_leds - p - 1));
+        double x = xm * outer_radius; 
+        double y = ym * outer_radius; 
+        LXPoint pb = new LXPoint(x-xl,y+yl,zl);
+        addPoint(pb);
+        leds.add(pb);
+      }
+    }
     
     this.id = id;
     this.leds = Collections.unmodifiableList(leds);
