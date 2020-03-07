@@ -45,7 +45,22 @@ public class Umbrella  extends AirpusherFixture {
   private Gradient inTheJungle;
   private Gradient darkLight;
   
+  public static double  easeInOutQuad(double t,double b , double c, double d) {
+    if ((t/=d/2) < 1) return c/2*t*t + b;
+    return -c/2 * ((--t)*(t-2) - 1) + b;
+  }
+
   public LXFloat4 calc(AirpusherPattern.Effect effect, int LEDindex, double time, LXFloat4 glob_pos) { 
+    
+      double segment = 100;
+      int timeI = (int)(time / segment);
+      time = time % segment;
+      time = easeInOutQuad(time / 100, 0.0, 1.0, 1.0) * 100;
+      if ((timeI & 1) == 1) {
+          time = segment - time;
+      }
+      
+    
       switch (effect) {
           case Spring: {
             double x = Math.sin((toLocal(glob_pos).x + 1.0) * 0.25 + time * 0.050);
